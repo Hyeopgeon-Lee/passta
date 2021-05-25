@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+	xsi:schemaLocation="
+          http://www.springframework.org/schema/data/mongo
+          http://www.springframework.org/schema/data/mongo/spring-mongo-2.2.xsd
+          http://www.springframework.org/schema/beans
+          http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+
+	<mongo:mongo-client host="10.0.50.22" port="27017"
+		credentials="17c9c459-b369-426d-9eba-aa11ab1244b2:fc73f6c0-c7c4-431e-bdb3-179fffa8cba2@cba4f7b1-9dcb-4684-8653-1b2f96df81a6"
+		id="mongo">
+	</mongo:mongo-client>
+
+	<mongo:db-factory dbname="cba4f7b1-9dcb-4684-8653-1b2f96df81a6" mongo-ref="mongo"
+		id="mongoDbFactory" />
+
+	<bean id="mongoTemplate"
+		class="org.springframework.data.mongodb.core.MongoTemplate">
+		<constructor-arg name="mongoDbFactory"
+			ref="mongoDbFactory" />
+	</bean>
+
+</beans>
+
+
